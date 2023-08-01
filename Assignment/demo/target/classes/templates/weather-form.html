@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather API</title>
+    <script>
+        function showPrompt(option) {
+            var weatherPrompt = document.getElementById("weatherPrompt");
+            var windSpeedPrompt = document.getElementById("windSpeedPrompt");
+            var pressurePrompt = document.getElementById("pressurePrompt");
+            var thankYouMessage = document.getElementById("thankYouMessage");
+            if (option === 1) {
+                weatherPrompt.style.display = "block";
+                windSpeedPrompt.style.display = "none";
+                pressurePrompt.style.display = "none";
+            } else if (option === 2) {
+                weatherPrompt.style.display = "none";
+                windSpeedPrompt.style.display = "block";
+                pressurePrompt.style.display = "none";
+            } else if (option === 3) {
+                weatherPrompt.style.display = "none";
+                windSpeedPrompt.style.display = "none";
+                pressurePrompt.style.display = "block";
+            } else if (option === 0) {
+                weatherPrompt.style.display = "none";
+                windSpeedPrompt.style.display = "none";
+                pressurePrompt.style.display = "none";
+                thankYouMessage.style.display = "block";
+            }
+        }
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "1") {
+                // Pressing "1" triggers Get Weather
+                showPrompt(1);
+            } else if (event.key === "2") {
+                // Pressing "2" triggers Get Wind Speed
+                showPrompt(2);
+            } else if (event.key === "3") {
+                // Pressing "3" triggers Get Pressure
+                showPrompt(3);
+            } else if (event.key === "0") {
+                // Pressing "0" triggers Exit
+                showPrompt(0);
+            }
+        });
+    </script>
+</head>
+<body>
+    <h2>Weather API</h2>
+    <h5>Press 1: For Weather Temperature</h5>
+    <h5>Press 2: For WindSpeed </h5>
+    <h5>Press 3: For Wind Pressure</h5>
+    <h5>Press 0: For Exit </h5>
+    <div id="weatherPrompt" style="display: none;">
+        <form action="/getWeather" method="post">
+            <label for="weatherDate">Enter Date for Weather:</label>
+            <input type="text" id="weatherDate" name="weatherDate" required>
+            <input type="submit" value="Get Weather">
+        </form>
+    </div>
+
+    <div id="windSpeedPrompt" style="display: none;">
+        <form action="/getWindSpeed" method="post">
+            <label for="windSpeedDate">Enter Date for Wind Speed:</label>
+            <input type="text" id="windSpeedDate" name="windSpeedDate" required>
+            <input type="submit" value="Get Wind Speed">
+        </form>
+    </div>
+
+    <div id="pressurePrompt" style="display: none;">
+        <form action="/getPressure" method="post">
+            <label for="pressureDate">Enter Date for Pressure:</label>
+            <input type="text" id="pressureDate" name="pressureDate" required>
+            <input type="submit" value="Get Pressure">
+        </form>
+    </div>
+    <div id="thankYouMessage" style="display: none;">
+        <form action="/exit" method="post">
+            <h5>Are You Sure! You want to exit</h5>
+            <input type="submit" value="Yes">
+        </form>
+    </div>
+    
+</body>
+</html>
